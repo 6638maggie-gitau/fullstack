@@ -39,9 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Room_booking',
     'rest_framework',
+    'rest_framework.authtoken',
+    'cloudinary',
+    'cloudinary_storage',
+    "corsheaders",
+
 ]
+AUTH_USER_MODEL = 'Room_booking.User'
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -127,3 +134,64 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+AUTHENTICATION_BACKENDS = ['Room_booking.auth_backend.EmailBackend']
+
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://booking-app-backend-gqr0.onrender.com',
+#     'https://booking-app-nine-ruby.vercel.app',
+# ]
+CORS_ALLOWED_ORIGINS = [
+    # "http://127.0.0.1:5173",
+    # "http://localhost:5173",
+    "https://booking-app-nine-ruby.vercel.app"
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_EXPOSE_HEADERS = [
+    "Content-Type",
+    "Authorization",
+]
+ROOT_URLCONF = 'booking_app.urls'
+import os
+
+# For offline serving:
+# MEDIA_URL = '/media/'  # URL path for media files
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory to store media files
+
+import cloudinary
+import cloudinary.api
+import cloudinary.uploader
+
+# Cloudinary configuration
+cloudinary.config(
+    cloud_name="dxbm4jutk",
+    api_key="154477864673916",
+    api_secret="JepRjLTqD_kDGP6XN-jjYFjKK3U",
+    secure=True,
+)
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dxbm4jutk',
+    'API_KEY': '154477864673916',
+    'API_SECRET': 'JepRjLTqD_kDGP6XN-jjYFjKK3U',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+
+import dj_database_url
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
+
+
+DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+SECRET_KEY = os.environ.get("SECRET_KEY")
