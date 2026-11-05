@@ -4,15 +4,24 @@ from django.contrib.auth.models import AbstractUser
 
 from cloudinary.models import CloudinaryField
 
+
+class User(AbstractUser):
+    email = models.EmailField(unique=True)
+    full_name = models.CharField(max_length=100,default="")
+
 class Room(models.Model):
     ROOM_TYPES = [
+        ('bedsitter','Bedsitter'),
+        ('1bedroom','1 Bedroom'),
+        ('2bedroom','2 Bedroom'),
         ('suite','Suite'),
         ('standard','Standard Room'),
         ('deluxe','Deluxe Room'),
     ]
     CURRENCY_TYPES = [
         ('USD', 'USD'),
-        ('USD', 'EUR'),
+        ('EUR', 'EUR'),
+        ('KSH', 'KSH'),
     ]
 
     name = models.CharField(max_length=100,blank=True,default='')
@@ -36,7 +45,7 @@ class RoomImage(models.Model):
 
 class OccupiedDate(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='occupiedDates')
-    User = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='booked_dates')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='booked_dates')
     date = models.DateField()
 
     def __str__(self):
@@ -44,6 +53,3 @@ class OccupiedDate(models.Model):
 
 
 
-class User(AbstractUser):
-    email = models.EmailField(unique=True)
-    full_name = models.CharField(max_length=100,default="")

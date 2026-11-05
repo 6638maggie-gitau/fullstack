@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Room_booking',
+    'payments',
     'rest_framework',
     'rest_framework.authtoken',
     'cloudinary',
@@ -151,7 +152,7 @@ AUTHENTICATION_BACKENDS = ['Room_booking.auth_backend.EmailBackend']
 CORS_ALLOWED_ORIGINS = [
     # "http://127.0.0.1:5173",
     # "http://localhost:5173",
-    "https://booking-app-nine-ruby.vercel.app"
+    #vercel
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = [
@@ -171,16 +172,16 @@ import cloudinary.uploader
 
 # Cloudinary configuration
 cloudinary.config(
-    cloud_name="dxbm4jutk",
-    api_key="154477864673916",
-    api_secret="JepRjLTqD_kDGP6XN-jjYFjKK3U",
+    cloud_name="gyyprvd8",
+    api_key= "382463756878716",
+    api_secret="T81Mj89H-m0zplm5xWwPwbTFzro",
     secure=True,
 )
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dxbm4jutk',
-    'API_KEY': '154477864673916',
-    'API_SECRET': 'JepRjLTqD_kDGP6XN-jjYFjKK3U',
+    'CLOUD_NAME': "gyyprvd8",
+    'API_KEY': '382463756878716',
+    'API_SECRET': 'T81Mj89H-m0zplm5xWwPwbTFzro',
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

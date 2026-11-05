@@ -1,32 +1,19 @@
-import { useContext, useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
-import { Outlet } from "react-router-dom";
-
-import { UserContext } from "./components/UserContext";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import WhatsApp  from  "./components/WhatsApp";
+import "./App.css";
+import GoogleMap from "./components/GoogleMap";
+import AIBookingAssistant from "./Pages/AiBookingAssistant";
 function App() {
-  const { user, setUser } = useContext(UserContext);
-  const [loading, setLoading] = useState(true); // New loading state
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Parse JSON string from localStorage
-    } else {
-      setUser(null);
-    }
-    setLoading(false); // Mark loading as complete
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>; // Optionally show a loading spinner
-  }
-
   return (
-    <>
-      <Navbar />
-      <Outlet />
-    </>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<WhatsApp/>} />
+            <Route path="/map" element={<GoogleMap />} />
+            <Route path="/assistant" element={<AIBookingAssistant />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
