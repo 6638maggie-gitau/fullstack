@@ -1,17 +1,30 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WhatsApp  from  "./components/WhatsApp";
+// import WhatsApp  from  "./components/WhatsApp";
 import "./App.css";
-import GoogleMap from "./components/GoogleMap";
-import AIBookingAssistant from "./Pages/AiBookingAssistant";
+import HomePage from "./Pages/HomePage";
+import AllRooms from "./Pages/AllRooms";
+import Booking from "./Pages/Booking";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp"
+import Navbar from "./components/Navbar";
+import FAQ from "./components/FAQ";
+import Footer from "./components/Footer"
 function App() {
   return (
     <Router>
       <div className="App">
-        <Routes>
-          <Route path="/" element={<WhatsApp/>} />
-            <Route path="/map" element={<GoogleMap />} />
-            <Route path="/assistant" element={<AIBookingAssistant />} />
-        </Routes>
+        < Navbar/>
+      
+      <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/allrooms" element={<AllRooms/>}/>
+          <Route path="/faq" element={<FAQ/>}/>
+          <Route path="/booking" element={<Booking/>}/>
+          <Route path="/login" element={<Login/>}/>
+           <Route path="/signup" element={<SignUp/>}/>
+          <Route path="/footer" element={<Footer/>}/>
+       
+          </Routes>
       </div>
     </Router>
   );
