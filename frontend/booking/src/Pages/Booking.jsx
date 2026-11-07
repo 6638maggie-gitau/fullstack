@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Mpesa from "../components/Mpesa"
 import Footer from "../components/Footer"
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -144,11 +145,12 @@ const handleSubmit = (e) => {
             />
           </div>
           <button  type="submit" className="rounded-full bg-teal-900 px-8 py-4 font-semibold text-white transition hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-700 focus:ring-offset-2 md:whitespace-nowrap">
-            Confirm Booking
+            Check availability
           </button>
           </form>
         </div>
         </div>
+        <Mpesa/>
         <Footer/>
         </section>
     );
@@ -164,5 +166,5 @@ function Field({ label,htmlFor, children}) {
     </div>
   )
 }
-
 export default Booking;
+

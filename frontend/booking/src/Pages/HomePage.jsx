@@ -21,22 +21,22 @@ const HomePage = () => {
           showArrows={false}
         >
           <div
-            className="h-screen bg-cover bg-center flex items-center justify-center"
+            className=" img-blur h-screen bg-cover bg-center flex items-center justify-center"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1660557989695-14fac79c086d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D')",
+                "url('https://plus.unsplash.com/premium_photo-1661963123153-5471a95b7042?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D')",
             }}
           >
-            <div className="bg-transparent bg-opacity-50 text-blue-500 p-10 rounded-lg text-center">
+            <div className="bg-transparent bg-opacity-50 text-black font-semibold p-10 rounded-lg text-center">
               <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
                 Welcome to Zara Homes and Villas
               </h1>
-              <p className="text-xl md:text-2xl mb-6">
+              <p className="text-xl md:text-2xl mb-6 text-blue-600">
                 Enjoy a unique blend of comfort, style, and tranquility in our exquisite homes and villas.
               </p>
               
               
-              <p className="text-xl md:text-2xl mb-6">
+              <p className="text-xl md:text-2xl mb-6 ">
                 Located in malindi , Shanzu and Diani
               </p>
               <Link to="/Booking">

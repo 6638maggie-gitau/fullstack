@@ -1,7 +1,7 @@
 const STATS = [
       { value: "12", label: "luxury suite"},
-      { value: "4.9", label: "luxury suite"},
-      { value: "12", label: "luxury suite"},
+      { value: "4", label: "ratings"},
+      { value: "12", label: "tree top suite"},
       ];
   
  function Ratings() {

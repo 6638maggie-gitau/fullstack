@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-^&9ebnp+7t2_@y3-!e%sv0f%a*stvruj0%bh^ilm6k^w0(n=)5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+     "localhost",
+    "127.0.0.1",
+    ".ngrok-free.app",
+    
+]
 
 
 # Application definition
@@ -153,6 +158,7 @@ CORS_ALLOWED_ORIGINS = [
     # "http://127.0.0.1:5173",
     # "http://localhost:5173",
     #vercel
+
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = [
@@ -161,7 +167,16 @@ CORS_EXPOSE_HEADERS = [
 ]
 ROOT_URLCONF = 'booking_app.urls'
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
+
+MPESA_ENV = os.getenv("MPESA_ENV", "sandbox")  # or "production"
+MPESA_CONSUMER_KEY = os.getenv("MPESA_CONSUMER_KEY")
+MPESA_CONSUMER_SECRET = os.getenv("MPESA_CONSUMER_SECRET")
+MPESA_SHORTCODE = os.getenv("MPESA_SHORTCODE")  # sandbox: 174379
+MPESA_PASSKEY = os.getenv("MPESA_PASSKEY")
+MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL")
 # For offline serving:
 # MEDIA_URL = '/media/'  # URL path for media files
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory to store media files
@@ -185,7 +200,6 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 
 
 import dj_database_url
