@@ -1,22 +1,67 @@
-const STATS = [
-      { value: "12", label: "luxury suite"},
-      { value: "4", label: "ratings"},
-      { value: "12", label: "tree top suite"},
-      ];
-  
- function Ratings() {
-    return(
-<div className="bg-stone-100 py-16">
-          <dl className="mx-auto grid max-w-6xl grid-cols-3 gap-4 px-6 text-center">
-            {STATS.map(({ value, label }) => (
-              <div key={label}>
-                <dt className="text-4xl font-extrabold text-teal-700 md:text-5xl">{value}</dt>
-                <dd className="mt-2 text-sm text-slate-500 md:text-lg">{label}</dd>
-              </div>
-            ))}
-          </dl>
+
+
+
+function Ratings({ reviews = [] }) {
+  const totalReviews = reviews.length;
+
+  const averageRating =
+    totalReviews > 0
+      ? reviews.reduce((total, review) => total + review.rating, 0) /
+        totalReviews
+      : 0;
+
+  const roundedRating = averageRating.toFixed(1);
+
+  return (
+    <section className="bg-white p-6 rounded-xl shadow-md">
+      <h2 className="text-2xl font-bold mb-4">
+        Guest Ratings
+      </h2>
+
+      <div className="flex items-center gap-3 mb-5">
+        <span className="text-4xl font-bold">
+          {roundedRating}
+        </span>
+
+        <div>
+          <div className="text-yellow-500 text-xl">
+            {"★".repeat(Math.round(averageRating))}
+            {"☆".repeat(5 - Math.round(averageRating))}
           </div>
-    );
+
+          <p className="text-gray-500 text-sm">
+            Based on {totalReviews} reviews
+          </p>
+        </div>
+      </div>
+
+      {[5, 4, 3, 2, 1].map((star) => {
+        const count = reviews.filter(
+          (review) => review.rating === star
+        ).length;
+
+        const percentage =
+          totalReviews > 0 ? (count / totalReviews) * 100 : 0;
+
+        return (
+          <div key={star} className="flex items-center gap-3 mb-2">
+            <span className="w-12 text-sm">{star} stars</span>
+
+            <div className="bg-gray-200 rounded-full h-2 flex-1">
+              <div
+                className="bg-yellow-400 h-2 rounded-full"
+                style={{ width: `${percentage}%` }}
+              />
+            </div>
+
+            <span className="text-sm text-gray-500 w-8">
+              {count}
+            </span>
+          </div>
+        );
+      })}
+    </section>
+  );
 }
 
 export default Ratings;

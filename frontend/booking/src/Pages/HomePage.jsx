@@ -5,7 +5,13 @@ import FAQ from "../components/FAQ";
 import Ratings from "../components/Ratings";
 import Footer from "../components/Footer";
 
-
+const reviews = [
+  { id: 1, rating: 5 },
+  { id: 2, rating: 4 },
+  { id: 3, rating: 5 },
+  { id: 4, rating: 3 },
+  { id: 5, rating: 5 },
+];
 const HomePage = () => {
   return (
     
@@ -136,7 +142,7 @@ const HomePage = () => {
           </div>
         </Carousel>
       </section>
-        <Ratings/>
+        <Ratings reviews={reviews}/>
       {/* About Section */}
       <section className="py-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto text-center">
